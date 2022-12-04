@@ -1,0 +1,44 @@
+{% extends "fountainpens/base.html" %}
+{% load static  %} 
+{% block content %}
+
+<section id="home">
+    <div class="container">
+		<div class="row">
+
+			<div class="col-md-12 col-sm-12">
+				<h2>All Nibs:</h2>
+				<link rel="stylesheet" type="text/css" href="{% static  'fountainpens/css/jquery.dataTables.min.css' %}">
+				<table id="allNibsTable" class="display" style="width:100%">
+				<thead>
+					<tr>
+						<th scope="col">Nib Size</th>
+						<th scope="col">Nib Point</th>
+						<th scope="col">Nib Color</th>
+						<th scope="col">Nib Manufacturer</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for nib in nibs_list %}
+					<tr>
+						<td>{{ nib.nib_size }}</td>
+						<td>{{ nib.nib_point }}</td>
+						<td>{{ nib.nib_color }}</td>
+                        <td>{{ nib.nib_manufacturer }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+</section>
+	
+<script src="{% static 'fountainpens/js/jquery-3.5.1.js' %}"></script>
+<script src="{% static 'fountainpens/js/jquery.dataTables.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $('#allNibsTable').DataTable();
+    });
+</script>
+{% endblock content%}

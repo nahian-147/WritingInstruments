@@ -1,0 +1,46 @@
+{% extends "fountainpens/base.html" %}
+{% load static  %} 
+{% block content %}
+
+<section id="home">
+    <div class="container">
+		<div class="row">
+
+			<div class="col-md-12 col-sm-12">
+				<h2>All Fountain Pens:</h2>
+				<link rel="stylesheet" type="text/css" href="{% static  'fountainpens/css/jquery.dataTables.min.css' %}">
+				<table id="allFountainPensTable" class="display" style="width:100%">
+				<thead>
+					<tr>
+						<th scope="col">Brand</th>
+						<th scope="col">Model</th>
+						<th scope="col">Supported Nib Size</th>
+						<th scope="col">Nib</th>
+						<th scope="col">Ink Reservior</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for fpen in fpens_list %}
+					<tr>
+						<td>{{ fpen.brand }}</td>
+						<td>{{ fpen.pen_model }}</td>
+						<td>{{ fpen.supported_nib_size }}</td>
+						<td>{{ fpen.nib }}</td>
+                        <td>{{ fpen.ink_reservior }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+</section>
+	
+<script src="{% static 'fountainpens/js/jquery-3.5.1.js' %}"></script>
+<script src="{% static 'fountainpens/js/jquery.dataTables.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $('#allFountainPensTable').DataTable();
+    });
+</script>
+{% endblock content%}

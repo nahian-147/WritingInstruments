@@ -1,0 +1,29 @@
+{% extends "fountainpens/base.html" %}
+
+{% block content %}
+
+<section>
+   <div class='alert alert-{{ message.tags }}'>
+		{% if messages %}
+			{% for message in messages %}
+			<div>
+				{{ message }}
+			</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+   <div class="container">
+      <form class="form" method="POST" enctype="multipart/form-data" action="/fountainpens/add-new-nib/">
+         {% csrf_token %}
+         <fieldset>
+         <legend>Add New Fountainpen Nib</legend>
+            {{ form.as_p }}
+         </fieldset>
+         <div>
+            <button type="submit">Add</button>
+         </div>
+      </form>
+  </div>
+</section>
+	
+{% endblock content%}

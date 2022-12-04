@@ -1,0 +1,42 @@
+{% extends "fountainpens/base.html" %}
+{% load static  %} 
+{% block mycss %} 
+<style>
+   
+</style> 
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+   <div class='alert alert-{{ message.tags }}'>
+		{% if messages %}
+			{% for message in messages %}
+			<div>
+				{{ message }}
+			</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+   <div class="container">
+      <form id="addform" class="form" method="POST" enctype="multipart/form-data" action="/fountainpens/add-fountain-pen/">
+         {% csrf_token %}
+         <fieldset>
+         <legend>Add New Fountainpen</legend>
+            {{ form.as_p }}
+         </fieldset>
+         <div>
+            <button type="submit">Add</button>
+         </div>
+      </form>
+  </div>
+</section>
+
+<script src="{% static 'fountainpens/js/jquery-3.5.1.js' %}"></script>
+<script>
+   $(document).ready( function (){
+      $("#addform").validate();
+   });
+</script>
+{% endblock content%}
